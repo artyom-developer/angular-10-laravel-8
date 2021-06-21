@@ -1,0 +1,63 @@
+<div class="container">
+  
+    <div class="d-flex justify-content-between">
+      <h4>Edit person</h4>
+      <a href="#" routerLink="/person/index" class="btn btn-primaryt">Back</a>
+    </div>
+
+    <hr>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="title">Name:</label>
+              <input
+                formControlName="name"
+                [(ngModel)]="person.name"
+                id="name"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                  <div *ngIf="f.name.errors.required">*Name is required.</div>
+                  <div *ngIf="f.name.errors.pattern">*The name must only contain letters.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="email">Email:</label>
+              <input
+                formControlName="email"
+                [(ngModel)]="person.email"
+                id="email"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                  <div *ngIf="f.email.errors.required">*Email is required.</div>
+                  <div *ngIf="f.email.errors.email">*The email must be a valid email address.</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+              <label for="phone">Phone:</label>
+              <input
+                [(ngModel)]="person.phone"
+                formControlName="phone"
+                id="phone"
+                type="text"
+                class="form-control">
+              <div *ngIf="f.phone.touched && f.phone.invalid" class="alert alert-danger">
+                  <div *ngIf="f.phone.errors.required">*Phone is required.</div>
+                  <div *ngIf="f.phone.errors.pattern">*The phone must only contain numbers.</div>
+              </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+    </form>
+</div>
